@@ -18,3 +18,4 @@ We're a digital agency – so we too understand how annoying it is to find the p
 * MacOS: Ensure you have node-sass installed.
 * `npm install` to install dependancies.
 * `grunt watch` to generate assets.
+* `./create_distribution.sh` to generate a WordPress Plugin zip file.
