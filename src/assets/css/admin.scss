@@ -1,0 +1,34 @@
+@import "frontend.scss";
+
+.ocvb-preview-container {
+  padding: 20px;
+  background: #e3e3e3;
+  width: 50%;
+}
+
+#ocvb-container {
+  margin: 20px 0;
+
+  &.preview-disabled {
+    opacity: 0.4;
+  }
+
+  h4 {
+    font-size: 1.6em;
+    line-height: 1.3em;
+  }
+  p {
+    font-size: 1.1em;
+  }
+  a {
+    font-size: 1.6em;
+  }
+}
+
+.admin-row {
+ 
+  &.admin-row-hidden {
+    display: none;
+  }
+  
+}
