@@ -15,19 +15,19 @@ Sure.
 
 *Desktop: *
 
-![Desktop view](https://drive.google.com/uc?export=view&id=1PCNCPGAz3_dkgWzdx_LDXgJMJqPf728p "Desktop view")
+![Desktop view](https://user-images.githubusercontent.com/62296056/76875788-6bdf8980-6847-11ea-90ac-12fcef903e04.png "Desktop view")
 
 ***
 
 *Mobile: *
 
-![Mobile view](https://drive.google.com/uc?export=view&id=1V-75NDm6K6JBSDbFF47DBt8tTHDGTex4 "Mobile view")
+![Mobile view](https://user-images.githubusercontent.com/62296056/76875789-6d10b680-6847-11ea-8a53-e94e3a7ebd32.png "Mobile view")
 
 ***
 
 *Dashboard: *
 
-![Dashboard view](https://drive.google.com/uc?export=view&id=1iDoRC5bSK2Tdzeq3l5SgKkwYM7EefJ8A "Dashboard view")
+![Dashboard view](https://user-images.githubusercontent.com/62296056/76875784-6aae5c80-6847-11ea-8224-520092584dc8.png "Dashboard view")
 
 ***
 
