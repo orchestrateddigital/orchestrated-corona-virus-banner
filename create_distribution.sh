@@ -5,6 +5,7 @@ BASE=.
 mkdir $BASE/dist
 rm $BASE/latest.zip
 cp -Rf $BASE/src/* $BASE/dist/
+cd $BASE/dist && npm install grunt && grunt && cd ..
 rm $BASE/dist/assets/css/*.scss
 rm $BASE/dist/assets/js/admin.js
 rm $BASE/dist/assets/js/frontend.js

@@ -73,9 +73,13 @@ class Orchestrated_Corona_Virus_Banner_API {
 				$html .= '';
 			break;
 			case 'text':
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="text" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . sanitize_text_field( $field['placeholder'] ) . '" value="' . sanitize_text_field( $data ) . '" />' . "\n";
+			break;
 			case 'url':
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="text" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . esc_url_raw( $field['placeholder'] ) . '" value="' . sanitize_text_field( $data ) . '" />' . "\n";
+			break;
 			case 'email':
-				$html .= '<input id="' . esc_attr( $field['id'] ) . '" type="text" name="' . esc_attr( $option_name ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" value="' . esc_attr( $data ) . '" />' . "\n";
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="text" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . sanitize_email( $field['placeholder'] ) . '" value="' . sanitize_email( $data ) . '" />' . "\n";
 			break;
 
 			case 'password':
@@ -83,22 +87,22 @@ class Orchestrated_Corona_Virus_Banner_API {
 			case 'hidden':
 				$min = '';
 				if ( isset( $field['min'] ) ) {
-					$min = ' min="' . esc_attr( $field['min'] ) . '"';
+					$min = ' min="' . sanitize_text_field( $field['min'] ) . '"';
 				}
 
 				$max = '';
 				if ( isset( $field['max'] ) ) {
-					$max = ' max="' . esc_attr( $field['max'] ) . '"';
+					$max = ' max="' . sanitize_text_field( $field['max'] ) . '"';
 				}
-				$html .= '<input id="' . esc_attr( $field['id'] ) . '" type="' . esc_attr( $field['type'] ) . '" name="' . esc_attr( $option_name ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" value="' . esc_attr( $data ) . '"' . $min . '' . $max . '/>' . "\n";
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="' . sanitize_text_field( $field['type'] ) . '" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . sanitize_text_field( $field['placeholder'] ) . '" value="' . sanitize_text_field( $data ) . '"' . $min . '' . $max . '/>' . "\n";
 			break;
 
 			case 'text_secret':
-				$html .= '<input id="' . esc_attr( $field['id'] ) . '" type="text" name="' . esc_attr( $option_name ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" value="" />' . "\n";
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="text" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . sanitize_text_field( $field['placeholder'] ) . '" value="" />' . "\n";
 			break;
 
 			case 'textarea':
-				$html .= '<textarea id="' . esc_attr( $field['id'] ) . '" rows="5" cols="50" name="' . esc_attr( $option_name ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '">' . $data . '</textarea><br/>'. "\n";
+				$html .= '<textarea id="' . sanitize_text_field( $field['id'] ) . '" rows="5" cols="50" name="' . sanitize_text_field( $option_name ) . '" placeholder="' . sanitize_text_field( $field['placeholder'] ) . '">' . $data . '</textarea><br/>'. "\n";
 			break;
 
 			case 'checkbox':
@@ -106,7 +110,7 @@ class Orchestrated_Corona_Virus_Banner_API {
 				if ( $data && 'on' == $data ) {
 					$checked = 'checked="checked"';
 				}
-				$html .= '<input id="' . esc_attr( $field['id'] ) . '" type="' . esc_attr( $field['type'] ) . '" name="' . esc_attr( $option_name ) . '" ' . $checked . '/>' . "\n";
+				$html .= '<input id="' . sanitize_text_field( $field['id'] ) . '" type="' . sanitize_text_field( $field['type'] ) . '" name="' . sanitize_text_field( $option_name ) . '" ' . $checked . '/>' . "\n";
 			break;
 
 			case 'checkbox_multi':
@@ -116,7 +120,7 @@ class Orchestrated_Corona_Virus_Banner_API {
 					if ( in_array( $k, $data ) ) {
 						$checked = true;
 					}
-					$html .= '<label for="' . esc_attr( $field['id'] . '_' . $k ) . '" class="checkbox_multi"><input type="checkbox" ' . checked( $checked, true, false ) . ' name="' . esc_attr( $option_name ) . '[]" value="' . esc_attr( $k ) . '" id="' . esc_attr( $field['id'] . '_' . $k ) . '" /> ' . $v . '</label><br> ';
+					$html .= '<label for="' . sanitize_text_field( $field['id'] . '_' . $k ) . '" class="checkbox_multi"><input type="checkbox" ' . checked( $checked, true, false ) . ' name="' . sanitize_text_field( $option_name ) . '[]" value="' . sanitize_text_field( $k ) . '" id="' . sanitize_text_field( $field['id'] . '_' . $k ) . '" /> ' . $v . '</label><br> ';
 				}
 			break;
 
@@ -126,12 +130,12 @@ class Orchestrated_Corona_Virus_Banner_API {
 					if ( $k == $data ) {
 						$checked = true;
 					}
-					$html .= '<label for="' . esc_attr( $field['id'] . '_' . $k ) . '"><input type="radio" ' . checked( $checked, true, false ) . ' name="' . esc_attr( $option_name ) . '" value="' . esc_attr( $k ) . '" id="' . esc_attr( $field['id'] . '_' . $k ) . '" /> ' . $v . '</label> ';
+					$html .= '<label for="' . sanitize_text_field( $field['id'] . '_' . $k ) . '"><input type="radio" ' . checked( $checked, true, false ) . ' name="' . sanitize_text_field( $option_name ) . '" value="' . sanitize_text_field( $k ) . '" id="' . sanitize_text_field( $field['id'] . '_' . $k ) . '" /> ' . $v . '</label> ';
 				}
 			break;
 
 			case 'select':
-				$html .= '<select name="' . esc_attr( $option_name ) . '" id="' . esc_attr( $field['id'] ) . '">';
+				$html .= '<select name="' . sanitize_text_field( $option_name ) . '" id="' . sanitize_text_field( $field['id'] ) . '">';
 				foreach ( $field['options'] as $k => $v ) {
 					$selected = false;
 					$disabled = false;
@@ -141,19 +145,19 @@ class Orchestrated_Corona_Virus_Banner_API {
 					if ( $k == "––" ) {
 						$disabled = true;
 					}
-					$html .= '<option ' . selected( $selected, true, false ) . ' ' . ( $disabled ? "disabled" : "" ) . ' value="' . esc_attr( $k ) . '">' . $v . '</option>';
+					$html .= '<option ' . selected( $selected, true, false ) . ' ' . ( $disabled ? "disabled" : "" ) . ' value="' . sanitize_text_field( $k ) . '">' . $v . '</option>';
 				}
 				$html .= '</select> ';
 			break;
 
 			case 'select_multi':
-				$html .= '<select name="' . esc_attr( $option_name ) . '[]" id="' . esc_attr( $field['id'] ) . '" multiple="multiple">';
+				$html .= '<select name="' . sanitize_text_field( $option_name ) . '[]" id="' . sanitize_text_field( $field['id'] ) . '" multiple="multiple">';
 				foreach ( $field['options'] as $k => $v ) {
 					$selected = false;
 					if ( in_array( $k, $data ) ) {
 						$selected = true;
 					}
-					$html .= '<option ' . selected( $selected, true, false ) . ' value="' . esc_attr( $k ) . '">' . $v . '</option>';
+					$html .= '<option ' . selected( $selected, true, false ) . ' value="' . sanitize_text_field( $k ) . '">' . $v . '</option>';
 				}
 				$html .= '</select> ';
 			break;
@@ -193,7 +197,7 @@ class Orchestrated_Corona_Virus_Banner_API {
 
 			default:
 				if ( ! $post ) {
-					$html .= '<label for="' . esc_attr( $field['id'] ) . '">' . "\n";
+					$html .= '<label for="' . sanitize_text_field( $field['id'] ) . '">' . "\n";
 				}
 
 				$html .= '<span class="description">' . $field['description'] . '</span>' . "\n";
@@ -221,9 +225,9 @@ class Orchestrated_Corona_Virus_Banner_API {
 	public function validate_field ( $data = '', $type = 'text' ) {
 
 		switch( $type ) {
-			case 'text': $data = esc_attr( $data ); break;
+			case 'text': $data = sanitize_text_field( $data ); break;
 			case 'url': $data = esc_url( $data ); break;
-			case 'email': $data = is_email( $data ); break;
+			case 'email': $data = sanitize_email( $data ); break;
 		}
 
 		return $data;
@@ -284,7 +288,7 @@ class Orchestrated_Corona_Virus_Banner_API {
 	}
 
 	/**
-	 * Dispay field in metabox
+	 * Display field in metabox
 	 * @param  array  $field Field data
 	 * @param  object $post  Post object
 	 * @return void

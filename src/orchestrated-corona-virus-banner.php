@@ -17,8 +17,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-require("vendor/autoload.php");
-
 // Load plugin class files
 require_once( 'includes/orchestrated-corona-virus-banner.php' );
 require_once( 'includes/orchestrated-corona-virus-banner-settings.php' );

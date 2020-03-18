@@ -79,6 +79,8 @@ class Orchestrated_Corona_Virus_Banner_Settings {
 		$link_text = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_link_text' ) ?: "More Information";
 		$foreground_color = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_foreground_color' ) ?: "#ffffff";
 		$background_color = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_background_color' ) ?: "#cc0000";
+		$container_css = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_container_css' ) ?: "";
+		$container_css_mobile = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_container_css_mobile' ) ?: "";
 
 		$banner_state_class = $enabled ? "ocvb-enabled" : "ocvb-disabled";
 		$link_state_class = "ocvb-disabled";
@@ -116,12 +118,23 @@ class Orchestrated_Corona_Virus_Banner_Settings {
 			}
 		}
 
+		if ( $preview ) {
+			$container_css = "";
+			$container_css_mobile = "";
+		}
+
 		return <<<HTML
 			<style>
 				#ocvb-container {
 					color: ${foreground_color};
 					background-color: ${background_color};
 					text-align: ${message_alignment};
+					${container_css}
+				}
+				@media screen and (max-width: 480px) {
+					#ocvb-container {
+						${container_css_mobile}
+					}
 				}
 				#ocvb-container h4 {
 					color: ${foreground_color};
@@ -162,6 +175,8 @@ HTML;
 		$link_text = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_link_text' ) ?: "More Information";
 		$foreground_color = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_foreground_color' ) ?: "#ffffff";
 		$background_color = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_background_color' ) ?: "#cc0000";
+		$container_css = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_container_css' ) ?: "";
+		$container_css_mobile = get_option( Orchestrated_Corona_Virus_Banner()->_token . '_container_css_mobile' ) ?: "";
 		
 		$pages = $this->parent->get_pages();
 		$pages["––"] = "––––––––––––––";
@@ -169,7 +184,7 @@ HTML;
 		$pages["EXT"] = "Link to external URL";
 
 		$settings['settings'] = array(
-			'title'						=> __( 'Settings', 'orchestrated-corona-virus-banner' ),
+			'title'						=> __( 'Corona Virus Banner – Settings', 'orchestrated-corona-virus-banner' ),
 			'description'				=> __( 'Configure what is displayed in the banner.', 'orchestrated-corona-virus-banner' ),
 			'fields'					=> array(
 				array(
@@ -201,8 +216,8 @@ HTML;
 					'description'			=> __( 'How would you like the notice to be displayed?', 'orchestrated-corona-virus-banner' ),
 					'type'					=> 'select',
 					'options'				=> array(
-						'left' => 'Left',
 						'center' => 'Center',
+						'left' => 'Left',
 						'right' => 'Right',
 						'justify' => 'Justified',
 						'inherit' => 'Default',
@@ -242,6 +257,20 @@ HTML;
 					'description'			=> __( 'What background color would you like to use?', 'orchestrated-corona-virus-banner' ),
 					'type'					=> 'color',
 					'default'				=> '#cc0000'
+				),
+				array(
+					'id'					=> 'container_css',
+					'label'					=> __( 'CSS' , 'orchestrated-corona-virus-banner' ),
+					'description'			=> __( 'Is there CSS you want to apply to the banner container?', 'orchestrated-corona-virus-banner' ),
+					'type'					=> 'textarea',
+					'placeholder'			=> __( 'e.g. margin-top: 20px;', 'orchestrated-corona-virus-banner' )
+				),
+				array(
+					'id'					=> 'container_css_mobile',
+					'label'					=> __( 'CSS (Mobile)' , 'orchestrated-corona-virus-banner' ),
+					'description'			=> __( 'Is there CSS you want to apply to the banner container on mobile?', 'orchestrated-corona-virus-banner' ),
+					'type'					=> 'textarea',
+					'placeholder'			=> __( 'e.g. margin-top: 20px;', 'orchestrated-corona-virus-banner' )
 				),
 			)
 		);
@@ -310,7 +339,7 @@ HTML;
 			$html .= '</div>';
 
 			$html .= '<p class="submit">' . "\n";
-				$html .= '<input name="Submit" type="submit" class="button-primary" value="' . esc_attr( __( 'Save Settings' , 'orchestrated-corona-virus-banner' ) ) . '" />' . "\n";
+				$html .= '<input name="Submit" type="submit" class="button-primary" value="' . sanitize_text_field( __( 'Save Settings' , 'orchestrated-corona-virus-banner' ) ) . '" />' . "\n";
 			$html .= '</p>' . "\n";
 		$html .= '</form>' . "\n";
 

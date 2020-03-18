@@ -32,7 +32,7 @@ Sure.
 ***
 
 #### Why choose Orchestrated WordPress plugins?
-We're a digital agency – so we too understand how annoying it is to find the perfect plugin for your client – only to discover that it's riddled with call to actions, off-brand styling, error and other messages that distracts away from the seamless experience you're trying to offer. As such, we develop plugins that don't invade your dashboard or dashboard menus, and feel like part of the overall WordPress experience. 
+We're a digital agency – so we too understand how annoying it is to find the perfect plugin for your client – only to discover that it's riddled with call to actions, off-brand styling, error and other messages that distracts away from the seamless experience you're trying to offer. As such, we develop plugins that don't invade your dashboard or dashboard menus, and function as part of the overall WordPress experience. 
 
 ## Development
 
